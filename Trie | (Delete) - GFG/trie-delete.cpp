@@ -145,7 +145,7 @@ class Solution{
   void deleteKey(trie_node_t *root, char key[])
   {
     //Code here
-     for(int i=0; key[i]!='\0'; i++)
+     for(int i=0; i<strlen(key); i++)
     	root = root->children[key[i]-'a'];
 	root->value = 0;
 
