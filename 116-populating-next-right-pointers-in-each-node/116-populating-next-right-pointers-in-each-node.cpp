@@ -18,23 +18,19 @@ public:
 
 class Solution {
 public:
-    void level(Node* root,  vector<vector<Node*>>& v, int l ){
-        if(root==NULL) return;
-        if(l==v.size()) v.push_back(vector<Node*>());
-        v[l].push_back(root);
-        level(root->left,v,l+1);
-        level(root->right,v,l+1);
-    }
+    
     Node* connect(Node* root) {
-        if(root==NULL)return NULL;
-        root->next=NULL;
-        vector<vector<Node*>>v;
-        level(root, v, 0);
-        for(int i=1;i<v.size();i++){
-            for(int j=0;j<v[i].size()-1;j++){
-                v[i][j]->next=v[i][j+1];
+        if (root == NULL) return NULL;
+        Node *pre = root;
+        Node *cur = NULL;
+        while(pre->left) {
+            cur = pre;
+            while(cur) {
+                cur->left->next = cur->right;
+                if(cur->next) cur->right->next = cur->next->left;
+                cur = cur->next;
             }
-            v[i][v[i].size()-1]->next=NULL;
+            pre = pre->left;
         }
         return root;
     }
