@@ -13,7 +13,7 @@ class Solution{
 	    vector<int> dp(n,0);
 	    dp[0]=arr[0];
 	    for(int i=1;i<n;i++){
-	        for(int j=0;j<n;j++){
+	        for(int j=0;j<i;j++){
 	            if(arr[i]>arr[j]){
 	                dp[i]=max(dp[i],dp[j]);
 	            }
