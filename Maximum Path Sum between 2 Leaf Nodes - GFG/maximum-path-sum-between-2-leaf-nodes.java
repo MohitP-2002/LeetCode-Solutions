@@ -121,14 +121,14 @@ class Solution
     
     int solver(Node root){
         if(root==null) return 0;
-        if(root.left==null && root.right==null) return root.data;
         int l=solver(root.left);
         int r=solver(root.right);
-        if(root.left!=null && root.right!=null){
-            res=Math.max(res,l+r+root.data);
-            return root.data+Math.max(l,r);
-        }
-        return (root.left==null)?(root.data+r):(root.data+l);
+        if(root.left==null)return r+root.data;
+        if(root.right==null) return l+root.data;
+        int temp=Math.max(l,r)+root.data;
+        int ans=l+r+root.data;
+        res=Math.max(res,ans);
+        return temp;
     }
     int maxPathSum(Node node)
     { 
