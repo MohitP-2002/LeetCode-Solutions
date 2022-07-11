@@ -11,21 +11,21 @@
  */
 class Solution {
 public:
-    void rightView(TreeNode* root, vector<int> & v,int level, int *maxlevel){
-        if(root==nullptr) return ;
-        if(*maxlevel<level){
+    int maxLevel=0;
+    void rightView(TreeNode* root, vector<int>& v, int level){
+        if(!root) return;
+        if(level>maxLevel){
             v.push_back(root->val);
-            *maxlevel=level;
+            maxLevel=level;
         }
-        rightView(root->right, v, level+1,maxlevel);
-        rightView(root->left,v,level+1,maxlevel);
+        rightView(root->right, v, level+1);
+        rightView(root->left, v, level+1);
     }
     vector<int> rightSideView(TreeNode* root) {
-        if(root==nullptr) return vector<int>();
+        if(!root) return {};
         vector<int> v;
-        int maxlevel=0;
         v.push_back(root->val);
-        rightView(root,v,0,&maxlevel);
+        rightView(root, v, 0);
         return v;
     }
 };
