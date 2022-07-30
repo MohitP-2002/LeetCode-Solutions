@@ -18,10 +18,9 @@ public:
         int ans=0;
         while(!q.empty()){
             int size=q.size();
-            int min=q.front().second;
             int first,last;
             for(int i=0;i<size;i++){
-                unsigned int cur=q.front().second-min;//to prevent overflow
+                unsigned int cur=q.front().second;
                 if(i==0) first=cur;
                 if(i==size-1) last=cur;
                 if(q.front().first->left){
